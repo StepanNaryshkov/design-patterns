@@ -22,9 +22,8 @@ Creational:
 **Factory method** is creational design pattern which provides an interface for creating object in superclass but it delegates object creational to subclasses to change the type of objects that will be created. It means that we don't know exactly which types of objects we want to create, but we know that these objects will have the same structure and differnt data.
 ```
 index.js
-
 class AbstractProduct {
-    constructor({model, price, owner}) {
+  constructor({ model, price, owner }) {
     this.model = model;
     this.price = price;
     this.owner = owner;
@@ -33,15 +32,15 @@ class AbstractProduct {
 
 class Creator {
   create(props) {
-    switch(props.type) {
-      case 'Auto':
+    switch (props.type) {
+      case "Auto":
         return new Auto(props);
         break;
-      case 'Motorcycle':
+      case "Motorcycle":
         return new Motorcycle(props);
         break;
-      default: 
-        throw 'Parameter is not a product!'
+      default:
+        throw "Parameter is not a product!";
     }
   }
 }
@@ -51,23 +50,27 @@ const factory = new Creator(); // superclass
 class Auto extends AbstractProduct {}
 class Motorcycle extends AbstractProduct {}
 
-const X5 = factory.create({ // subclasse
- type: 'Auto',
- model: 'X5',
- price: '50000',
- owner: 'Mike'
-})
-const CX500 = factory.create({ // subclasse
- type: 'Motorcycle',
- model: 'Honda CX 500',
- price: '20000',
- owner: 'Bred'
-})
+const X5 = factory.create({
+  // subclasse
+  type: "Auto",
+  model: "X5",
+  price: "50000",
+  owner: "Mike"
+});
+const CX500 = factory.create({
+  // subclasse
+  type: "Motorcycle",
+  model: "Honda CX 500",
+  price: "20000",
+  owner: "Bred"
+});
+
 ```
+**Abstract method** is creational design pattern which provide an interface for creating objects that are related by a common theme. The main goal is encapsulate a group of factories with a common goal 
 ```
 class AbstractProduct {
-    constructor({model, price, owner, type}) {
-    this.model = model;
+  constructor({ brand, price, owner, type }) {
+    this.brand = brand;
     this.price = price;
     this.owner = owner;
     this.type = type;
@@ -76,53 +79,60 @@ class AbstractProduct {
 
 class ProductModernFactory {
   create(props) {
-    switch(props.type) {
-      case 'Auto':
-        return new Auto({...props, type: 'modern'});
+    switch (props.type) {
+      case "Auto":
+        return new Auto({ ...props, type: "modern" });
         break;
-      case 'Motorcycle':
-        return new Motorcycle({...props, type: 'modern'});
+      case "Motorcycle":
+        return new Motorcycle({ ...props, type: "modern" });
         break;
-      default: 
-        throw 'Parameter is not a product!'
+      default:
+        throw "Parameter is not a product!";
     }
   }
 }
 
 class ProductRetroFactory {
   create(props) {
-    switch(props.type) {
-      case 'Auto':
-        return new Auto({...props, type: 'retro'});
+    switch (props.type) {
+      case "Auto":
+        return new Auto({ ...props, type: "retro" });
         break;
-      case 'Motorcycle':
-        return new Motorcycle({...props, type: 'retro'});
+      case "Motorcycle":
+        return new Motorcycle({ ...props, type: "retro" });
         break;
-      default: 
-        throw 'Parameter is not a product!'
+      default:
+        throw "Parameter is not a product!";
     }
   }
 }
 
 const productModernFactory = new ProductModernFactory();
 const productRetroFactory = new ProductRetroFactory();
-
 class Auto extends AbstractProduct {}
 class Motorcycle extends AbstractProduct {}
 
-const X5 = productModernFactory.create({
- type: 'Auto',
- model: 'X5',
- price: '50000',
- owner: 'Mike'
-})
-const CX500 = productRetroFactory.create({
- type: 'Motorcycle',
- model: 'Honda CX 500',
- price: '20000',
- owner: 'Bred'
-})
+function AbstractFactory(props) {
+  switch (props.kind) {
+    case "modern":
+      return productModernFactory.create(props);
+      break;
+    case "retro":
+      return productRetroFactory.create(props);
+      break;
+    default:
+      throw "Parameter is not a factory!";
+  }
+}
 
-console.log(X5);
-console.log(CX500);
+const myAuto = AbstractFactory({
+  kind: "modern",
+  type: "Auto",
+  brand: "BMW",
+  price: "10000",
+  owner: "Stepan"
+});
+
+console.log(myAuto);
+
 ```
