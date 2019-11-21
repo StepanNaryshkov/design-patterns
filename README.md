@@ -272,3 +272,7 @@ console.log(singletonSecondary.getName()); // example
 
  </p>
 </details>
+
+**Sctructural design patterns**
+
+**Adapter**
