@@ -181,3 +181,33 @@ const myHome = new HouseBuilder()
   .build();
 console.log(myHome);
 ```
+**Prototype** is creational design pattern which lets you copy existing objects without maling your code dependent on their classes
+```
+class Car {
+  constructor(model, price) {
+    this.model = model;
+    this.price = price;
+  }
+
+  clone() {
+    return new Car(this.model, this.price);
+  }
+}
+
+const prototypeCar = new Car("BMW X5", 50000);
+
+const car1 = prototypeCar.clone();
+const car2 = prototypeCar.clone();
+const car3 = prototypeCar.clone();
+
+OR
+
+const car = {
+  model: 'BMW',
+  price: 50000
+};
+
+const car1 = Object.create(car);
+const car2 = Object.create(car);
+car2.price = 99999;
+```
