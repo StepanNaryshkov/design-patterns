@@ -18,7 +18,6 @@ Design pattern is reusable solution to commonly occuring problems in software de
 - **Behavioral**. Take care of effective communication and the assignment of responsibilities between objects.
 
 Creational:
-**Singleton** is creational design pattern
 
 **Factory method** is creational design pattern which provides an interface for creating object in superclass but it delegates object creational to subclasses to change the type of objects that will be created. It means that we don't know exactly which types of objects we want to create, but we know that these objects will have the same structure and differnt data.
 
