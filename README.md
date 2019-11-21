@@ -136,3 +136,48 @@ const myAuto = AbstractFactory({
 console.log(myAuto);
 
 ```
+**Builder** is creational design pattern which lets you build  complex objects step by step. It allows you to produce different types and representations of an object using the same code.
+```
+class House {
+  constructor() {
+    this.foundation = true;
+  }
+}
+
+class HouseBuilder {
+  constructor() {
+    this.house = new House();
+  }
+
+  addDoors(doors) {
+    this.house.doors = doors;
+    return this;
+  }
+
+  addWalls(walls) {
+    this.house.walls = walls;
+    return this;
+  }
+
+  addWindows(windows) {
+    this.house.windows = windows;
+    return this;
+  }
+
+  addRoof(roof) {
+    this.house.roof = roof;
+    return this;
+  }
+
+  build() {
+    return this.house;
+  }
+}
+
+const myHome = new HouseBuilder()
+  .addDoors(true)
+  .addWalls(true)
+  .addRoof(true)
+  .build();
+console.log(myHome);
+```
