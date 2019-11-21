@@ -20,6 +20,10 @@ Design pattern is reusable solution to commonly occuring problems in software de
 Creational:
 
 **Factory method** is creational design pattern which provides an interface for creating object in superclass but it delegates object creational to subclasses to change the type of objects that will be created. It means that we don't know exactly which types of objects we want to create, but we know that these objects will have the same structure and differnt data.
+
+<details><summary>Show code</summary>
+<p>
+
 ```
 index.js
 class AbstractProduct {
@@ -66,7 +70,15 @@ const CX500 = factory.create({
 });
 
 ```
-**Abstract method** is creational design pattern which provide an interface for creating objects that are related by a common theme. The main goal is encapsulate a group of factories with a common goal 
+
+</p>
+</details>
+
+**Abstract method** is creational design pattern which provide an interface for creating objects that are related by a common theme. The main goal is encapsulate a group of factories with a common goal
+
+<details><summary>Show code</summary>
+<p>
+
 ```
 class AbstractProduct {
   constructor({ brand, price, owner, type }) {
@@ -136,7 +148,15 @@ const myAuto = AbstractFactory({
 console.log(myAuto);
 
 ```
+
+</p>
+</details>
+
 **Builder** is creational design pattern which lets you build  complex objects step by step. It allows you to produce different types and representations of an object using the same code.
+
+<details><summary>Show code</summary>
+<p>
+ 
 ```
 class House {
   constructor() {
@@ -181,7 +201,15 @@ const myHome = new HouseBuilder()
   .build();
 console.log(myHome);
 ```
+
+</p>
+</details>
+
 **Prototype** is creational design pattern which lets you copy existing objects without maling your code dependent on their classes
+
+<details><summary>Show code</summary>
+<p>
+ 
 ```
 class Car {
   constructor(model, price) {
@@ -211,3 +239,6 @@ const car1 = Object.create(car);
 const car2 = Object.create(car);
 car2.price = 99999;
 ```
+
+</p>
+</details>
