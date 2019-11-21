@@ -18,6 +18,7 @@ Design pattern is reusable solution to commonly occuring problems in software de
 - **Behavioral**. Take care of effective communication and the assignment of responsibilities between objects.
 
 Creational:
+**Singleton** is creational design pattern
 
 **Factory method** is creational design pattern which provides an interface for creating object in superclass but it delegates object creational to subclasses to change the type of objects that will be created. It means that we don't know exactly which types of objects we want to create, but we know that these objects will have the same structure and differnt data.
 
@@ -241,4 +242,34 @@ car2.price = 99999;
 ```
 
 </p>
+</details>
+
+**Singleton** is creational design pattern which lets you create class with only one instance and providing a global access to this instance
+
+<details><summary>Show code</summary>
+<p>
+
+```
+class Singleton {
+  constructor(name) {
+    if (Singleton.instance) {
+      return Singleton.instance;
+    }
+    Singleton.instance = this;
+    this.name = name;
+    return Singleton.instance;
+  }
+
+  getName() {
+    return this.name;
+  }
+}
+
+const singleton = new Singleton("example");
+const singletonSecondary = new Singleton("another example");
+console.log(singleton.getName()); // example
+console.log(singletonSecondary.getName()); // example
+```
+
+ </p>
 </details>
