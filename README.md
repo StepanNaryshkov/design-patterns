@@ -382,3 +382,55 @@ console.log(aboutPage.getContent());
   </p>
 </details>
 Also, we can add one more example, css variables are abstractation, and when we use them in our code it will be like implementation
+
+**Composite** is structural design pattern which composes objects into tree structures and then work with these sctructures as if they were individual objects
+
+
+<details><summary>Show code</summary>
+<p>
+ 
+ ```
+ class Sprint {
+  addTask(task) {
+    this.task = task;
+  }
+}
+
+class Composite extends Sprint {
+  constructor() {
+    super();
+    this.tasks = [];
+  }
+
+  add(task) {
+    this.tasks.push(task);
+  }
+
+  getInfo() {
+    return this.tasks.map(i => i.task);
+  }
+}
+
+class CreatePage extends Composite {
+  constructor() {
+    super();
+    this.addTask("create page");
+  }
+}
+
+class TestPage extends Composite {
+  constructor() {
+    super();
+    this.addTask("need to test the created page");
+  }
+}
+
+const sprint = new Composite();
+sprint.add(new CreatePage());
+sprint.add(new TestPage());
+console.log(sprint.getInfo());
+
+ ```
+ 
+  </p>
+</details>
