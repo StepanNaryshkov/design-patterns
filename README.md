@@ -357,7 +357,28 @@ class Laptop extends Computer { // implementation
 const myLaptop = new Laptop(new Asus());
 console.log(myLaptop.greeting());
 
+EXAMPLE #2
+class About {
+  constructor(theme) {
+    this.theme = theme;
+  }
+
+  getContent() {
+    return `This is About page in ${this.theme.getColor()} theme`;
+  }
+}
+
+class DarkTheme {
+  getColor() {
+    return "Dark";
+  }
+}
+
+const aboutPage = new About(new DarkTheme());
+console.log(aboutPage.getContent());
+
  ```
  
   </p>
 </details>
+Also, we can add one more example, css variables are abstractation, and when we use them in our code it will be like implementation
