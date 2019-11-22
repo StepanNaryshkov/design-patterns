@@ -205,7 +205,7 @@ console.log(myHome);
 </p>
 </details>
 
-**Prototype** is creational design pattern which lets you copy existing objects without maling your code dependent on their classes
+**Prototype** is creational design pattern which lets you copy existing objects without making your code dependent on their classes
 
 <details><summary>Show code</summary>
 <p>
