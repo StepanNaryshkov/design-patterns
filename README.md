@@ -17,7 +17,7 @@ Design pattern is reusable solution to commonly happen problems in software desi
 - **Sctructural**. Explain how to assemble objects and classes into larger stuctures, while keeping the structure flexiable and efficiant.
 - **Behavioral**. Take care of effective communication and the assignment of responsibilities between objects.
 
-Creational:
+***Creational:***
 
 **Factory method** is creational design pattern which provides an interface for creating object in superclass but it delegates object creational to subclasses to change the type of objects that will be created. It means that we don't know exactly which types of objects we want to create, but we know that these objects will have the same structure and differnt data.
 
@@ -273,7 +273,7 @@ console.log(singletonSecondary.getName()); // example
  </p>
 </details>
 
-**Sctructural design patterns**
+***Sctructural design patterns***
 
 **Adapter** is structural design pattern which lets objects with incompatible interfaces to collaborate. 
 
