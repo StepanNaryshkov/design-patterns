@@ -315,3 +315,49 @@ console.log(cars.data);
 
  </p>
 </details>
+
+**Bridge** is structural design pattern that lets you split a large class or a set of closely related classes into two separate system: abstraction and implementation.
+
+<details><summary>Show code</summary>
+<p>
+ 
+ ```
+ class Computer { // abstraction
+  constructor(brand) {
+    this.brand = brand;
+  }
+}
+
+class Brand {
+  constructor(type) {
+    this.type = type;
+  }
+
+  getName() {
+    return this.type;
+  }
+}
+
+class Asus extends Brand {
+  constructor() {
+    super("Asus");
+  }
+}
+
+class Laptop extends Computer { // implementation
+  constructor(brand) {
+    super(brand);
+  }
+
+  greeting() {
+    return `Laptop - ${this.brand.getName()}`;
+  }
+}
+
+const myLaptop = new Laptop(new Asus());
+console.log(myLaptop.greeting());
+
+ ```
+ 
+  </p>
+</details>
