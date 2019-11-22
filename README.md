@@ -275,4 +275,43 @@ console.log(singletonSecondary.getName()); // example
 
 **Sctructural design patterns**
 
-**Adapter**
+**Adapter** is structural design pattern which lets objects with incompatible interfaces to collaborate. 
+
+<details><summary>Show code</summary>
+<p>
+ 
+```
+const myApi = {
+  getCars: () => ["BMW", "AUDI", "TESLA"]
+};
+
+const anotherApi = {
+  getCars: () => "HAMMER,HONDA"
+};
+
+const responseAdapter = data => data.split(",");
+
+class Cars {
+  constructor() {
+    this._data = [];
+  }
+
+  get data() {
+    return this._data;
+  }
+
+  set data(newCars) {
+    this._data = [...this._data, ...newCars];
+  }
+}
+
+const cars = new Cars();
+
+cars.data = myApi.getCars();
+cars.data = responseAdapter(anotherApi.getCars());
+
+console.log(cars.data);
+```
+
+ </p>
+</details>
