@@ -382,7 +382,7 @@ console.log(aboutPage.getContent());
   </p>
 </details>
 Also, we can add one more example, css variables are abstractation, and when we use them in our code it will be like implementation
-
+<br>
 
 **Composite** is structural design pattern which composes objects into tree structures and then work with these sctructures as if they were individual objects
 
@@ -435,3 +435,5 @@ console.log(sprint.getInfo());
  
   </p>
 </details>
+
+**Decorator** is structural design pattern which lets you dynamically change behavior of an object by wrapping in object of decorator class.
