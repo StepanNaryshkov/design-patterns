@@ -467,3 +467,45 @@ console.log(order.getPrice())
 
   </p>
 </details>
+
+**Facade** is structural design pattern which provides simplified interface to complex subsystem (framework, library, api)
+
+<details><summary>Show code</summary>
+<p>
+ 
+```
+class Coffee {
+  findFreeWaiter() {
+    console.log('find a waiter')
+  }
+  
+  prepareCoffeeMachine() {
+    console.log('prepare coffee machine')
+  }
+  
+  
+  makeCoffee() {
+    console.log('make a cup of coffee')
+  }
+}
+
+
+class Facade {
+  constructor(coffee){
+    this.coffee = coffee
+  }
+  
+  getCoffee(){
+    this.coffee.findFreeWaiter();
+    this.coffee.prepareCoffeeMachine()
+    this.coffee.makeCoffee()
+  }
+}
+
+
+const order = new Facade(new Coffee());
+order.getCoffee()
+```
+
+  </p>
+</details>
