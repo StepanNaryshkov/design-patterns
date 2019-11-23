@@ -437,3 +437,33 @@ console.log(sprint.getInfo());
 </details>
 
 **Decorator** is structural design pattern which lets you dynamically change behavior of an object by wrapping in object of decorator class.
+
+<details><summary>Show code</summary>
+<p>
+ 
+```
+class Coffee {
+  getPrice() {
+    return 10
+  }
+}
+
+
+class Latte {
+  constructor(coffee) {
+    this.coffee = coffee
+  }
+
+  getPrice() {
+    return this.coffee.getPrice() + 4;
+  }
+}
+
+
+let order = new Coffee();
+order = new Latte(order);
+console.log(order.getPrice())
+```
+
+  </p>
+</details>
