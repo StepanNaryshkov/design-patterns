@@ -556,3 +556,37 @@ console.log(coffee.getAllCoffee());
 
   </p>
 </details>
+
+**Proxy** is structural design pattern which provide surrogate or a placeholder for another object to control access to it.
+
+<details><summary>Show code</summary>
+<p>
+ 
+```
+class CoffeeProxy {
+ constructor(info) {
+    this.info = info;
+  }
+  
+  getCoffee(money) {
+    if (money < 10) {
+      return "Sorry, but it costs 10$"
+    } else {
+      return this.info.getCoffee()
+    }
+  }
+}
+
+class Coffee {
+  getCoffee() {
+    return "here is your coffee";
+  }
+}
+
+const coffee = new CoffeeProxy(new Coffee());
+console.log(coffee.getCoffee(7));
+console.log(coffee.getCoffee(10));
+```
+
+  </p>
+</details>
