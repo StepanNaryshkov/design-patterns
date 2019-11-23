@@ -509,3 +509,50 @@ order.getCoffee()
 
   </p>
 </details>
+
+**Flyweight** is structural design pattern which reduces cost of creating large number of similar objects. Also it uses to minimize memory usage by sharing as much as possible to similar objects. 
+
+<details><summary>Show code</summary>
+<p>
+ 
+```
+class Coffee {
+  constructor() {
+    this.types = []
+  }
+  
+  createCoffee(type) {
+    if (this.types.includes(type)) {
+      return type;
+    } else {
+      return this.types.push(type); // here flyweight
+    }
+  }
+  
+  
+  getCoffee(type) {
+    const ind = this.types.indexOf(type);
+    if (ind !== -1) {
+      return this.types[ind];
+    } else {
+      return "Not found"
+    }
+  }
+  
+  getAllCoffee() {
+    return this.types;
+  }
+}
+
+const coffee = new Coffee();
+coffee.createCoffee("Latte");
+coffee.createCoffee("Espresso");
+coffee.createCoffee("Latte");
+coffee.createCoffee("Cacao");
+
+console.log(coffee.getCoffee("Latte"));
+console.log(coffee.getAllCoffee());
+```
+
+  </p>
+</details>
