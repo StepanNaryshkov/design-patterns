@@ -152,7 +152,7 @@ console.log(myAuto);
 </p>
 </details>
 
-**Builder** is creational design pattern which lets you build  complex objects step by step. It allows you to produce different types and representations of an object using the same code.
+**Builder** is creational design pattern which lets you build  complex objects step by step. It allows you to produce different types and representations of an object using the same code. Useful when there are a lot of steps involved in creation of an object, and we don't create big constructor for each object (house in example)
 
 <details><summary>Show code</summary>
 <p>
