@@ -740,7 +740,7 @@ remote.submit(turnOff); // Darkness!
   </p>
 </details>
 
-**Iterator** is structural design pattern which accessess the elements of the objects sequentially without exposing its undrelying representaional.
+**Iterator** is behavior design pattern which accessess the elements of the objects sequentially without exposing its undrelying representaional.
 
 <details><summary>Show code</summary>
 <p>
@@ -789,7 +789,7 @@ stationList.removeStation(new RadioStation(89)); // Will remove station 89
   </p>
 </details>
 
-**Mediator** is structural design pattern which provides cetral object over a group of objects by encapsulating how these objects interact. From real world, it is network, when you call somebody.
+**Mediator** is behavior design pattern which provides cetral object over a group of objects by encapsulating how these objects interact. From real world, it is network, when you call somebody.
 
 <details><summary>Show code</summary>
 <p>
@@ -828,6 +828,341 @@ const jane = new User("Jane Doe", mediator);
 john.send("Hi there!");
 jane.send("Hey!");
 
+
+```
+
+  </p>
+</details>
+
+
+**Memento** is behavior design pattern which provides the ability to restore an object to its previous state
+
+<details><summary>Show code</summary>
+<p>
+
+```
+class EditorMemento {
+  constructor(content) {
+    this._content = content;
+  }
+
+  getContent() {
+    return this._content;
+  }
+}
+
+class Editor {
+  constructor() {
+    this._content = "";
+  }
+
+  type(words) {
+    this._content = this._content + " " + words;
+  }
+
+  getContent() {
+    return this._content;
+  }
+
+  save() {
+    return new EditorMemento(this._content);
+  }
+
+  restore(memento) {
+    this._content = memento.getContent();
+  }
+}
+
+const editor = new Editor();
+
+// Type some stuff
+editor.type("This is the first sentence.");
+editor.type("This is second.");
+
+// Save the state to restore to : This is the first sentence. This is second.
+const saved = editor.save();
+
+// Type some more
+editor.type("And this is third.");
+
+// Output: Content before Saving
+console.log(editor.getContent()); // This is the first sentence. This is second. And this is third.
+
+// Restoring to last saved state
+editor.restore(saved);
+
+console.log(editor.getContent()); // This is the first sentence. This is second.
+
+```
+
+  </p>
+</details>
+
+**Strategy** is behavioral design pattern which allows you switch between strategy based upon the situation.
+
+<details><summary>Show code</summary>
+<p>
+
+```
+class ShoppingCart {
+  constructor(discount) {
+    this.discount = discount;
+    this.amount = 0;
+  }
+
+  checkout() {
+    return this.discount(this.amount);
+  }
+
+  setAmount(amount) {
+    this.amount = amount;
+  }
+}
+
+function guestStrategy(amount) {
+  return amount;
+}
+
+function regularStrategy(amount) {
+  return amount * 0.9;
+}
+
+function premiumStrategy(amount) {
+  return amount * 0.8;
+}
+
+const regularUser = new ShoppingCart(regularStrategy);
+regularUser.setAmount(100);
+console.log(regularUser.checkout());
+
+```
+
+  </p>
+</details>
+
+**State** is behavioral design pattern which lets you change the behavior of a class when state changes. For example offline and online mode on website
+<details><summary>Show code</summary>
+<p>
+
+```
+const upperCase = inputString => inputString.toUpperCase();
+const lowerCase = inputString => inputString.toLowerCase();
+const defaultTransform = inputString => inputString;
+
+class TextEditor {
+  constructor(transform) {
+    this._transform = transform;
+  }
+
+  setTransform(transform) {
+    this._transform = transform;
+  }
+
+  type(words) {
+    console.log(this._transform(words));
+  }
+}
+
+const editor = new TextEditor(defaultTransform);
+
+editor.type("First line");
+
+editor.setTransform(upperCase);
+
+editor.type("Second line");
+editor.type("Third line");
+
+editor.setTransform(lowerCase);
+
+editor.type("Fourth line");
+editor.type("Fifth line");
+
+```
+
+  </p>
+</details>
+
+
+**Visitor** is behavioral design pattern which lets you add futher operations to object without having modify them.
+
+<details><summary>Show code</summary>
+<p>
+
+```
+class Monkey {
+  shout() {
+    console.log("Ooh oo aa aa!");
+  }
+
+  accept(operation) {
+    operation.visitMonkey(this);
+  }
+}
+
+class Lion {
+  roar() {
+    console.log("Roaaar!");
+  }
+
+  accept(operation) {
+    operation.visitLion(this);
+  }
+}
+
+class Dolphin {
+  speak() {
+    console.log("Tuut tuttu tuutt!");
+  }
+
+  accept(operation) {
+    operation.visitDolphin(this);
+  }
+}
+
+const speak = {
+  visitMonkey(monkey) {
+    monkey.shout();
+  },
+  visitLion(lion) {
+    lion.roar();
+  },
+  visitDolphin(dolphin) {
+    dolphin.speak();
+  }
+};
+
+const monkey = new Monkey();
+const lion = new Lion();
+const dolphin = new Dolphin();
+
+monkey.accept(speak); // Ooh oo aa aa!
+lion.accept(speak); // Roaaar!
+dolphin.accept(speak);
+
+```
+
+  </p>
+</details>
+
+**Observer** is behavioral design pattern which defines one to many dependency between objects, so when one changes, all its dependets  are notified by automaticly
+
+<details><summary>Show code</summary>
+<p>
+
+```
+const JobPost = title => ({
+  title: title
+});
+
+class JobSeeker {
+  constructor(name) {
+    this._name = name;
+  }
+
+  notify(jobPost) {
+    console.log(
+      this._name,
+      "has been notified of a new posting :",
+      jobPost.title
+    );
+  }
+}
+
+class JobBoard {
+  constructor() {
+    this._subscribers = [];
+  }
+
+  subscribe(jobSeeker) {
+    this._subscribers.push(jobSeeker);
+  }
+
+  addJob(jobPosting) {
+    this._subscribers.forEach(subscriber => {
+      subscriber.notify(jobPosting);
+    });
+  }
+}
+
+const jonDoe = new JobSeeker("John Doe");
+const janeDoe = new JobSeeker("Jane Doe");
+const kaneDoe = new JobSeeker("Kane Doe");
+
+// Create publisher and attach subscribers
+const jobBoard = new JobBoard();
+jobBoard.subscribe(jonDoe);
+jobBoard.subscribe(janeDoe);
+
+// Add a new job and see if subscribers get notified
+jobBoard.addJob(JobPost("Software Engineer"));
+
+```
+
+  </p>
+</details>
+
+**Template method** is behavioral design pattern which defines the skeleton of an algorithm in an operation, deferring some steps to subclasses. 
+
+<details><summary>Show code</summary>
+<p>
+
+```
+class Builder {
+  // Template method
+  build() {
+    this.test();
+    this.lint();
+    this.assemble();
+    this.deploy();
+  }
+}
+class AndroidBuilder extends Builder {
+  test() {
+    console.log("Running android tests");
+  }
+
+  lint() {
+    console.log("Linting the android code");
+  }
+
+  assemble() {
+    console.log("Assembling the android build");
+  }
+
+  deploy() {
+    console.log("Deploying android build to server");
+  }
+}
+
+class IosBuilder extends Builder {
+  test() {
+    console.log("Running ios tests");
+  }
+
+  lint() {
+    console.log("Linting the ios code");
+  }
+
+  assemble() {
+    console.log("Assembling the ios build");
+  }
+
+  deploy() {
+    console.log("Deploying ios build to server");
+  }
+}
+
+const androidBuilder = new AndroidBuilder();
+androidBuilder.build();
+
+// Output:
+// Running android tests
+// Linting the android code
+// Assembling the android build
+// Deploying android build to server
+
+const iosBuilder = new IosBuilder();
+iosBuilder.build();
 
 ```
 
