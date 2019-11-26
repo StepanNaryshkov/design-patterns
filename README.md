@@ -9,7 +9,6 @@ Design pattern is reusable solution to commonly happen problems in software desi
  - Pattern is reusable solution;
  - Pattern is proven solution;
  - Pattern is expressive solution;
- - Patters solves particular problem;
  
  We consider three main group of design patterns:
 
