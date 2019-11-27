@@ -9,7 +9,7 @@ Design pattern is reusable solution to commonly happen problems in software desi
  We consider three main group of design patterns:
 
 - **Creational**. Provide object creational mechanisms that increase flebility and reuse of existing code.
-- **Sctructural**. Explain how to assemble objects and classes into larger stuctures, while keeping the structure flexiable and efficiant.
+- **Sctructural**. Explain how to assemble objects and classes into larger stuctures, while keeping the structure flexiable and efficient.
 - **Behavioral**. Take care of effective communication and the assignment of responsibilities between objects.
 
 ***Creational:***
